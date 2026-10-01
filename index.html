@@ -54,9 +54,26 @@
 				}
 			}
 
-			/* the template leaves email/phone icons uncolored (dark gray on dark background) */
-			ul.social li a.fa-envelope:before { background-color: #C98A3E; }
-			ul.social li a.fa-phone:before { background-color: #2E8B74; }
+			/* the template leaves email/phone icons uncolored (dark gray on dark background).
+			   color goes on the <a> itself, same as the template's own per-platform rules (e.g. LinkedIn) —
+			   mobile forces the inner :before background to transparent, so coloring :before only works on desktop. */
+			ul.social li a.fa-envelope { background-color: #C98A3E; }
+			ul.social li a.fa-phone { background-color: #2E8B74; }
+
+			/* nav: this template was built for 4 short items; with 6, the overflow wraps a 2nd row that
+			   spills out of the fixed-height bar with no background. Scroll horizontally instead of wrapping. */
+			@media (max-width: 736px) {
+				#nav ul {
+					display: flex;
+					overflow-x: auto;
+					-webkit-overflow-scrolling: touch;
+					white-space: nowrap;
+					justify-content: flex-start;
+					scrollbar-width: none;
+				}
+				#nav ul::-webkit-scrollbar { display: none; }
+				#nav li { flex: 0 0 auto; }
+			}
 		</style>
 	</head>
 	<body class="is-preload">
